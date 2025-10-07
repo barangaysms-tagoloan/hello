@@ -31,24 +31,18 @@
     }
 
     .card{
-      width:min(980px, 96%);
+      width:min(800px, 96%);
       background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
       border-radius:18px;
       padding:28px;
       box-shadow:var(--card-shadow);
-      display:grid;
-      grid-template-columns: 1fr 420px;
-      gap:22px;
-      align-items:stretch;
+      display:flex;
+      flex-direction:column;
       position:relative;
       overflow:hidden;
-      min-height:560px;
+      min-height:520px;
     }
 
-    /* left */
-    .left{
-      padding:18px 18px 22px 18px;
-    }
     .title-row{
       display:flex;
       align-items:center;
@@ -82,19 +76,6 @@
     .btn{background:var(--accent);color:white;padding:12px 16px;border-radius:12px;border:none;font-weight:700;cursor:pointer;box-shadow:0 8px 18px rgba(255, 92, 138, 0.18)}
     .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(255,92,138,0.12);box-shadow:none}
 
-    /* right */
-    .right{
-      background:linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.7));
-      padding:16px;border-radius:12px;border:1px solid rgba(0,0,0,0.03);
-      display:flex;flex-direction:column;align-items:center;gap:12px;justify-content:center
-    }
-    .photo{
-      width:100%;height:300px;border-radius:12px;background-size:cover;background-position:center;box-shadow:0 8px 30px rgba(96,91,101,0.08);position:relative;overflow:hidden
-    }
-    .controls{display:flex;gap:8px;margin-top:6px}
-    .small{padding:8px 10px;border-radius:10px;border:none;background:rgba(0,0,0,0.06);cursor:pointer}
-
-    /* modal */
     .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .2s ease}
     .modal.open{opacity:1;pointer-events:auto}
     .modal-card{background:white;border-radius:14px;padding:22px;max-width:720px;width:92%;box-shadow:0 18px 70px rgba(96,91,101,0.18)}
@@ -102,77 +83,49 @@
     .love-note{font-size:16px;line-height:1.6;color:#4b4656}
     .signature{margin-top:12px;text-align:right;font-weight:600;color:var(--accent)}
 
-    /* hearts animation */
     .hearts{position:absolute;inset:0;pointer-events:none}
     .heart{position:absolute;width:18px;height:18px;transform:translate(-50%,-50%) scale(0.85);opacity:0;filter:drop-shadow(0 6px 12px rgba(255,92,138,0.15))}
 
     footer{position:absolute;left:18px;bottom:14px;color:#a99eae;font-size:13px}
-
-    /* responsive */
-    @media(max-width:920px){
-      .card{grid-template-columns:1fr;min-height:760px}
-      .right{order:-1}
-      .photo{height:360px}
-    }
   </style>
 </head>
 <body>
-  <div class="card" role="application" aria-label="Monthsary surprise">
+  <div class="card">
     <div class="hearts" id="hearts"></div>
-
-    <div class="left">
-      <div class="title-row">
-        <div class="logo">❤</div>
-        <div>
-          <h1>Happy <span class="script">Monthsary</span></h1>
-          <div class="sub">For the most wonderful person I know — <strong>My Love</strong></div>
-        </div>
+    <div class="title-row">
+      <div class="logo">❤</div>
+      <div>
+        <h1>Happy <span class="script">Monthsary</span></h1>
+        <div class="sub">For the most wonderful person I know — <strong>My Love</strong></div>
       </div>
-
-      <div class="typewriter" id="typewriter">Hey love... I made something sweet just for you. Click the hearts on the right, or press "Open Surprise" to begin ✨</div>
-
-      <div class="reasons" id="reasons">
-        <div class="reason">Your laugh</div>
-        <div class="reason">Your kindness</div>
-        <div class="reason">Your hugs</div>
-        <div class="reason">How you listen</div>
-        <div class="reason">Your smile</div>
-        <div class="reason">Our inside jokes</div>
-      </div>
-
-      <div class="cta-row">
-        <button class="btn" id="openSurprise">Open Surprise</button>
-        <button class="btn ghost" id="playMusic">Play Music</button>
-        <button class="btn ghost" id="toggleConfetti">Confetti</button>
-      </div>
-
-      <div style="margin-top:18px;color:#6f6a79;font-size:14px">Tip: Click any 'reason' box to edit it and make it personal.</div>
-
     </div>
 
-    <div class="right">
-      <div class="photo" id="photo" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\'><rect width=\'100%\' height=\'100%\' fill=\'%23FFEFF4\' /><text x=\'50%\' y=\'50%\' font-size=\'28\' font-family=\'Montserrat\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23FF7AA3\'>Your Photo Here</text></svg>')"></div>
+    <div class="typewriter" id="typewriter">Hey love... I made something sweet just for you. Press "Open Surprise" to begin ✨</div>
 
-      <div class="controls">
-        <button class="small" id="prev">◀ Prev</button>
-        <button class="small" id="next">Next ▶</button>
-        <button class="small" id="heartBurst">Send Heart</button>
-        <button class="small" id="openNote">Open Note</button>
-      </div>
+    <div class="reasons" id="reasons">
+      <div class="reason">Your laugh</div>
+      <div class="reason">Your kindness</div>
+      <div class="reason">Your hugs</div>
+      <div class="reason">How you listen</div>
+      <div class="reason">Your smile</div>
+      <div class="reason">Our inside jokes</div>
+    </div>
 
-      <div style="font-size:13px;color:#9b93a3;margin-top:8px;text-align:center;">Click the photo to upload your favorite picture (mobile supported)</div>
-      <input type="file" id="fileInput" accept="image/*" style="display:none">
+    <div class="cta-row">
+      <button class="btn" id="openSurprise">Open Surprise</button>
+      <button class="btn ghost" id="playMusic">Play Music</button>
+      <button class="btn ghost" id="toggleConfetti">Confetti</button>
+      <button class="btn ghost" id="heartBurst">Send Heart</button>
     </div>
 
     <footer>Made with ♥ — Press the buttons and enjoy ✨</footer>
   </div>
 
-  <!-- modal -->
   <div class="modal" id="modal">
     <div class="modal-card">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <h3 style="margin:0">A Little Note</h3>
-        <button id="closeModal" class="small">Close</button>
+        <button id="closeModal" class="btn ghost">Close</button>
       </div>
       <p class="love-note" id="loveNote">Hey babe — on this monthsary I just want you to know how grateful I am for you. You make each day brighter and my heart happier. Thank you for being you.</p>
       <div class="signature">— Yours</div>
@@ -183,66 +136,30 @@
     </div>
   </div>
 
-  <!-- audio element (user will press play) -->
   <audio id="song" src="" preload="none"></audio>
 
   <script>
-    // ------------------ friendly utilities ------------------
     const typeEl = document.getElementById('typewriter');
-    const reasons = document.getElementById('reasons');
     const openBtn = document.getElementById('openSurprise');
     const modal = document.getElementById('modal');
     const closeModal = document.getElementById('closeModal');
-    const openNote = document.getElementById('openNote');
-    const heartsWrap = document.getElementById('hearts');
     const heartBurstBtn = document.getElementById('heartBurst');
     const toggleConfettiBtn = document.getElementById('toggleConfetti');
     const playMusicBtn = document.getElementById('playMusic');
     const song = document.getElementById('song');
+    const heartsWrap = document.getElementById('hearts');
 
-    // Typewriter text
-    const messages = [
-      "I can't stop smiling when I think of you.",
-      "Thank you for being my favorite person.",
-      "Every day with you is my new best day.",
-    ];
-    let mi = 0;
-    let ti = 0;
-    let typing = true;
+    const messages = ["I can't stop smiling when I think of you.","Thank you for being my favorite person.","Every day with you is my new best day."];
+    let mi = 0, ti = 0, typing = true;
     function typeLoop(){
       const txt = messages[mi];
-      if(typing){
-        typeEl.textContent = txt.slice(0, ti+1);
-        ti++;
-        if(ti >= txt.length){ typing = false; setTimeout(typeLoop,1500); return }
-        setTimeout(typeLoop,60 + Math.random()*60);
-      } else {
-        if(txt.length>0){
-          typeEl.textContent = txt.slice(0, ti-1);
-          ti--;
-          if(ti<=0){ typing=true; mi=(mi+1)%messages.length; setTimeout(typeLoop,400); return }
-          setTimeout(typeLoop,30 + Math.random()*20);
-        }
-      }
+      if(typing){ typeEl.textContent = txt.slice(0, ti+1); ti++; if(ti>=txt.length){ typing=false; setTimeout(typeLoop,1500); return } setTimeout(typeLoop,60+Math.random()*60); }
+      else{ if(txt.length>0){ typeEl.textContent = txt.slice(0, ti-1); ti--; if(ti<=0){ typing=true; mi=(mi+1)%messages.length; setTimeout(typeLoop,400); return } setTimeout(typeLoop,30+Math.random()*20); } }
     }
     typeLoop();
 
-    // Editable reasons
-    reasons.addEventListener('click', e=>{
-      const r = e.target.closest('.reason');
-      if(!r) return;
-      const old = r.textContent;
-      const input = document.createElement('input');
-      input.value = old; input.style.padding='8px'; input.style.minWidth='120px'; input.style.border='none';
-      r.textContent=''; r.appendChild(input); input.focus();
-      input.addEventListener('blur', ()=>{ if(input.value.trim()==='') r.textContent = old; else r.textContent = input.value });
-      input.addEventListener('keydown', ev=>{ if(ev.key==='Enter'){ input.blur() } if(ev.key==='Escape'){ r.textContent = old } });
-    });
-
-    // Modal controls
     openBtn.addEventListener('click', ()=>{ modal.classList.add('open'); launchConfetti(); });
-    openNote.addEventListener('click', ()=>{ modal.classList.add('open') });
-    closeModal.addEventListener('click', ()=>{ modal.classList.remove('open') });
+    closeModal.addEventListener('click', ()=>{ modal.classList.remove('open'); });
 
     document.getElementById('editNote').addEventListener('click', ()=>{
       const note = document.getElementById('loveNote');
@@ -257,92 +174,28 @@
       ta.replaceWith(p);
     });
 
-    // photo upload
-    const photo = document.getElementById('photo');
-    const inputFile = document.getElementById('fileInput');
-    photo.addEventListener('click', ()=> inputFile.click());
-    inputFile.addEventListener('change', e=>{
-      const f = e.target.files[0]; if(!f) return; const url = URL.createObjectURL(f); photo.style.backgroundImage = `url('${url}')`;
-    });
-
-    // carousel placeholders (you can replace urls array with actual pictures)
-    const urls = [
-      "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'><rect width='100%' height='100%' fill='%23FFEFF4' /><text x='50%' y='50%' font-size='36' font-family='Montserrat' dominant-baseline='middle' text-anchor='middle' fill='%23FF7AA3'>Our Picture 1</text></svg>",
-      "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'><rect width='100%' height='100%' fill='%23FFF6EA' /><text x='50%' y='50%' font-size='36' font-family='Montserrat' dominant-baseline='middle' text-anchor='middle' fill='%23FFB36A'>Our Picture 2</text></svg>",
-      "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'><rect width='100%' height='100%' fill='%23EDF8FF' /><text x='50%' y='50%' font-size='36' font-family='Montserrat' dominant-baseline='middle' text-anchor='middle' fill='%23007AFF'>Our Picture 3</text></svg>"
-    ];
-    let idx = 0;
-    document.getElementById('next').addEventListener('click', ()=>{ idx=(idx+1)%urls.length; photo.style.backgroundImage = `url('${urls[idx]}')`; });
-    document.getElementById('prev').addEventListener('click', ()=>{ idx=(idx-1+urls.length)%urls.length; photo.style.backgroundImage = `url('${urls[idx]}')`; });
-
-    // heart spawn
     function spawnHeart(x,y){
       const el = document.createElement('div'); el.className='heart';
       el.innerHTML = `<svg viewBox='0 0 32 29' width='36' height='36' xmlns='http://www.w3.org/2000/svg'><path d='M23.6 0c-2.7 0-4.7 1.7-5.6 3.1C16.1 1.7 14.1 0 11.4 0 5.5 0 0 5.1 0 11.9c0 7.8 8.9 13.6 15.8 17.1 6.7-3.5 15.9-9.1 15.9-17.1C31.7 5.1 26.2 0 20.3 0z' fill='%23FF6B8A'/></svg>`;
       heartsWrap.appendChild(el);
       const left = x + (Math.random()*80-40);
       const top = y + (Math.random()*40-10);
-      el.style.left = left + 'px'; el.style.top = top + 'px';
-      el.style.opacity = 1;
-      const ani = el.animate([
-        { transform: 'translate(-50%, -50%) scale(0.8) translateY(0)', opacity:1 },
-        { transform: 'translate(-50%, -50%) scale(1.2) translateY(-90px)', opacity:0 }
-      ], { duration: 1600+Math.random()*800, easing:'cubic-bezier(.22,.9,.35,1)' });
+      el.style.left = left + 'px'; el.style.top = top + 'px'; el.style.opacity = 1;
+      const ani = el.animate([{ transform:'translate(-50%,-50%) scale(0.8) translateY(0)', opacity:1},{ transform:'translate(-50%,-50%) scale(1.2) translateY(-90px)', opacity:0 }], {duration:1600+Math.random()*800, easing:'cubic-bezier(.22,.9,.35,1)'});
       ani.onfinish = ()=> el.remove();
     }
-    heartBurstBtn.addEventListener('click', ()=>{
-      for(let i=0;i<12;i++){ spawnHeart(window.innerWidth/2 + (Math.random()*200-100), window.innerHeight/2 + (Math.random()*200-100)) }
-    });
+    heartBurstBtn.addEventListener('click', ()=>{ for(let i=0;i<12;i++){ spawnHeart(window.innerWidth/2 + (Math.random()*200-100), window.innerHeight/2 + (Math.random()*200-100)) } });
 
-    // clicking photo emits heart
-    photo.addEventListener('click', (ev)=>{
-      const rect = photo.getBoundingClientRect(); const x = ev.clientX; const y = ev.clientY; spawnHeart(x,y);
-    });
-
-    // confetti (simple colored circles)
     let confettiOn = false;
-    function launchConfetti(){
-      if(confettiOn) return;
-      confettiOn = true; toggleConfettiBtn.classList.add('active');
-      const total = 60;
-      for(let i=0;i<total;i++){
-        setTimeout(()=>{
-          const dot = document.createElement('div');
-          dot.style.position='fixed'; dot.style.left = (Math.random()*100)+'%'; dot.style.top='-10px';
-          dot.style.width = dot.style.height = (6+Math.random()*12)+'px'; dot.style.borderRadius='50%';
-          const c = ['#FF8FB6','#FFD6E0','#FFD1B3','#FFD56E','#FF7AA3'][Math.floor(Math.random()*5)]; dot.style.background=c; dot.style.zIndex=9999; dot.style.pointerEvents='none';
-          document.body.appendChild(dot);
-          const dur = 1200 + Math.random()*1600;
-          dot.animate([{transform:'translateY(0) rotate(0deg)', opacity:1},{transform:`translateY(${window.innerHeight + 100}px) rotate(${Math.random()*720}deg)`, opacity:0}], {duration:dur, easing:'cubic-bezier(.2,.8,.3,1)'}).onfinish = ()=> dot.remove();
-        }, i*20)
-      }
-      setTimeout(()=>{ confettiOn=false }, 2200);
-    }
-    toggleConfettiBtn.addEventListener('click', ()=>{ launchConfetti(); });
+    function launchConfetti(){ if(confettiOn) return; confettiOn = true; const total=60; for(let i=0;i<total;i++){ setTimeout(()=>{ const dot=document.createElement('div'); dot.style.position='fixed'; dot.style.left=(Math.random()*100)+'%'; dot.style.top='-10px'; dot.style.width=dot.style.height=(6+Math.random()*12)+'px'; dot.style.borderRadius='50%'; const c=['#FF8FB6','#FFD6E0','#FFD1B3','#FFD56E','#FF7AA3'][Math.floor(Math.random()*5)]; dot.style.background=c; dot.style.zIndex=9999; dot.style.pointerEvents='none'; document.body.appendChild(dot); const dur=1200+Math.random()*1600; dot.animate([{transform:'translateY(0) rotate(0deg)', opacity:1},{transform:`translateY(${window.innerHeight+100}px) rotate(${Math.random()*720}deg)`, opacity:0}], {duration:dur, easing:'cubic-bezier(.2,.8,.3,1)'}).onfinish=()=>dot.remove(); }, i*20) } setTimeout(()=>{confettiOn=false}, 2200); }
+    toggleConfettiBtn.addEventListener('click', ()=> launchConfetti());
 
-    // music: allow user to set a local file. If user doesn't pick, the button toggles a cute chime (dataurl base64) instead
     playMusicBtn.addEventListener('click', ()=>{
       if(song.src){ if(song.paused){ song.play(); playMusicBtn.textContent='Pause Music' } else { song.pause(); playMusicBtn.textContent='Play Music' } return }
-      // ask user to pick a file from disk
-      const f = document.createElement('input'); f.type='file'; f.accept='audio/*'; f.onchange = (e)=>{
-        const file = e.target.files[0]; if(!file) return; song.src = URL.createObjectURL(file); song.play(); playMusicBtn.textContent='Pause Music';
-      };
-      f.click();
+      const f = document.createElement('input'); f.type='file'; f.accept='audio/*'; f.onchange=(e)=>{ const file=e.target.files[0]; if(!file) return; song.src=URL.createObjectURL(file); song.play(); playMusicBtn.textContent='Pause Music'; }; f.click();
     });
 
-    // little auto-heart shower on load
-    window.addEventListener('load', ()=>{
-      for(let i=0;i<8;i++){ setTimeout(()=>spawnHeart(window.innerWidth/2 + (Math.random()*200-100), window.innerHeight/2 + (Math.random()*200-100)), i*180) }
-    });
-
-    // accessibility: keyboard open modal
-    document.addEventListener('keydown', e=>{ if(e.key==='Enter' && document.activeElement === openBtn) openBtn.click(); if(e.key==='Escape') modal.classList.remove('open') });
-
-    // make sure reason boxes are editable by double-click removal
-    document.querySelectorAll('.reason').forEach(el=>el.setAttribute('tabindex',0));
-
-    // small helper: allow saving the whole card as an image (screenshot-free approach: instruct user to take screenshot) - we keep it simple
-
+    window.addEventListener('load', ()=>{ for(let i=0;i<8;i++){ setTimeout(()=>spawnHeart(window.innerWidth/2 + (Math.random()*200-100), window.innerHeight/2 + (Math.random()*200-100)), i*180) } });
   </script>
 </body>
 </html>
